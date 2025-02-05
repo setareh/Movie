@@ -1,14 +1,15 @@
 // src/authSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
-    username: '',
-    password: '',
+    username: "",
+    password: "",
     isLoggedIn: false,
-    status: 'idle',
-    error: null
+    status: "idle",
+    favorites: [],
+    error: null,
   },
   reducers: {
     setUsername(state, action) {
@@ -18,23 +19,35 @@ const authSlice = createSlice({
       state.password = action.payload;
     },
     login(state) {
-      if (state.username === 'admin' && state.password === '123456') {
+      if (state.username === "admin" && state.password === "123456") {
         state.isLoggedIn = true;
-        state.status = 'success'
+        state.status = "success";
       } else {
-        state.error = 'Invalid username or password';
-        state.status = 'failed'
+        state.error = "Invalid username or password";
+        state.status = "failed";
       }
     },
     logout(state) {
-      state.username = '';
-      state.password = '';
+      state.username = "";
+      state.password = "";
       state.isLoggedIn = false;
-      state.status = ''
-    }
+      state.status = "";
+    },
+    toggleFavorites(state, action) {
+      const movie = action.payload;
+      const isFavorite = state.favorites.some((fav) => fav.imdb === movie.imdb);
+      if (isFavorite) {
+        state.favorites = state.favorites.filter(
+          (fav) => fav.imdb === movie.imdb
+        );
+      } else {
+        state.favorites = [...state.favorites, movie];
+      }
+    },
   },
 });
 
-export const { setUsername, setPassword, login, logout } = authSlice.actions;
+export const { setUsername, setPassword, login, logout, toggleFavorites } =
+  authSlice.actions;
 
 export default authSlice.reducer;

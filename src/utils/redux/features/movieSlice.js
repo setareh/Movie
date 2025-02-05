@@ -1,43 +1,47 @@
 // src/movieSlice.js
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const API_KEY = 'be6dda4f'; // Replace with your OMDB API key
+const API_KEY = "be6dda4f"; // Replace with your OMDB API key
 
 export const fetchMovie = createAsyncThunk(
-  'movie/fetchMovie',
+  "movie/fetchMovie",
   async (title) => {
-    const response = await axios.get(`https://www.omdbapi.com/?&apikey=${API_KEY}`,{
-        params:{
-            t:title
-        }
-    });
-    return response.data;
+    const response = await axios.get(
+      `https://www.omdbapi.com/?&apikey=${API_KEY}`,
+      {
+        params: {
+          s: title,
+        },
+      }
+    );
+
+    return response.data.Search;
   }
 );
 
 const movieSlice = createSlice({
-  name: 'movie',
+  name: "movie",
   initialState: {
-    movie: null,
-    status: 'idle',
-    error: null
+    movie: [],
+    status: "idle",
+    error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchMovie.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(fetchMovie.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.status = "succeeded";
         state.movie = action.payload;
       })
       .addCase(fetchMovie.rejected, (state, action) => {
-        state.status = 'failed';
+        state.status = "failed";
         state.error = action.error.message;
       });
-  }
+  },
 });
 
 export default movieSlice.reducer;

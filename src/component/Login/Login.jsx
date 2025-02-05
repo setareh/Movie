@@ -33,10 +33,10 @@ export default function Login({open, setOpen}) {
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <DialogPanel
               transition
-              className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95"
+              className="relative transform overflow-hidden rounded-lg  text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95"
           >
             <div className="w-full max-w-xs">
-              <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <form className="bg-white shadow-md rounded px-8 pt-6 pb-8">
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     Username
@@ -67,11 +67,11 @@ export default function Login({open, setOpen}) {
                 <div className="flex items-center justify-between">
                   <button 
                     onClick={handleSubmit}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+                    className="bg-orange-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
                     type="button">
                     Sign In
                   </button>
-                  <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                  <a className="inline-block align-baseline font-bold text-sm text-orange-600 hover:text-orange-800" href="#">
                     Forgot Password?
                   </a>
                 </div>
