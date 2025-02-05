@@ -10,14 +10,17 @@ export default function Header() {
     const handleLoginModal = () => setOpen( p => !p);
 
   return (
-    <header className="bg-white">
-        <div className="py-6">
-            <button
-                onClick={handleLoginModal}
-                className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-            >
-                Log in
-            </button>
+    <header className="bg-gray-900">
+        <div className='block max-w-7xl mx-auto'>
+            <div className="py-6">
+                <button
+                    onClick={handleLoginModal}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white bg-orange-600  hover:bg-orange-500"
+                >
+                    Log in
+                </button>
+            </div>
+
         </div>
             <Login open={open} setOpen={setOpen} />
     </header>

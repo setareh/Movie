@@ -2,15 +2,18 @@ import Header from "../component/Header/Header";
 
 function Layout({children}) {
     return ( 
-        <div>
-            <div className="flex items-center justify-center flex-col max-w-5xl">
-                <Header />
+    <>
+        <Header />
+        <div className="max-w-7xl block mx-auto">
+            <div className="flex flex-col">
                 {children}
-                <div>
+                {/* <div>
                     footer
-                </div>
+                </div> */}
             </div>
         </div>
+
+    </>
 
      );
 }

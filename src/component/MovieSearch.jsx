@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovie } from '../utils/redux/features/movieSlice';
+import MovieCard from './MovieCard';
 
 const MovieSearch = () => {
   const [title, setTitle] = useState('');
@@ -16,26 +17,27 @@ const MovieSearch = () => {
   };
 
   return (
-    <div className='bg-blue-400'>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Enter movie title"
-      />
-      <button onClick={handleSearch}>Search</button>
+    <div>
+      <div className='flex flex-row py-12'>
+        <input 
+          className="shadow appearance-none border rounded w-3/6 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2" 
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Enter movie title">
+          </input>
+
+        <button 
+          onClick={handleSearch}
+          className='bg-orange-600 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          >
+            Search
+          </button>
+      </div>
       {status === 'loading' && <p>Loading...</p>}
       {status === 'failed' && <p>{error}</p>}
       {movie && (
-        <div>
-          <h2>{movie.Title} ({movie.Year})</h2>
-          <img src={movie.Poster} alt={`${movie.Title} poster`} />
-          <p><strong>Director:</strong> {movie.Director}</p>
-          <p><strong>Plot:</strong> {movie.Plot}</p>
-          <p><strong>IMDb Rating:</strong> {movie.imdbRating}</p>
-          <p><strong>Runtime:</strong> {movie.Runtime}</p>
-          <p><strong>Genre:</strong> {movie.Genre}</p>
-        </div>
+        <MovieCard movie={movie} />
       )}
     </div>
   );

@@ -7,9 +7,7 @@ function HomePage() {
 
     return ( 
         <Layout>
-            <div>
-                <MovieSearch />
-            </div>
+            <MovieSearch />
         </Layout>
      );
 }
